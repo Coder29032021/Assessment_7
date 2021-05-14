@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assessment7.Core
+namespace FieldAgent.Core.Entities
 {
 
     public class Agency
