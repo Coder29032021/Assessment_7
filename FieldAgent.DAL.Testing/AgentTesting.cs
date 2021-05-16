@@ -2,7 +2,7 @@ using NUnit.Framework;
 using FieldAgent.DAL.Repositories;
 using FieldAgent.DAL;
 using FieldAgent.Core.Entities;
-using FieldAgent.Core.DTOs;
+using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.Configuration.CommandLine;
@@ -64,6 +64,41 @@ namespace FieldAgent.DAL.Testing
             var response = db.Agent.Find(1);
 
             Assert.AreEqual(response.FirstName, agent1.FirstName);
+
+        }
+        [Test]
+        public void GetAgentShouldWork()
+        {
+            //public Response<Agent> Get(int agentId)
+            //{
+            //    Response<Agent> response = new Response<Agent>();
+            //    Agent agent = new Agent();
+            //    _context.Agent.Find(agentId);
+            //    response.Data = agent;
+            //    return response;
+            //}
+
+            Response<Agent> response = new Response<Agent>();
+
+            repo.Insert(agent1);
+            repo.Insert(agent2);
+
+            response.Data = agent1;
+            var fromMethod = repo.Get(1);
+
+            Assert.AreEqual(response.Data, fromMethod.Data);
+        }
+        [Test]
+        public void Delete()
+        {
+            Response aResponse = new Response();
+
+            repo.Insert(agent1);
+            repo.Insert(agent2);
+
+
+            aResponse = repo.Delete(1);
+            Assert.IsTrue(aResponse.Success);
 
         }
     }
