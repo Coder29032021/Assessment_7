@@ -9,7 +9,7 @@ using System.IO;
 using System;
 namespace FieldAgent.DAL.Testing
 {
-    public class MissionTesting : DbContext
+    public class AgentTesting : DbContext
     {
         //if you are trying to have test data for reports makes sense, otherwise just use repository add additional things
 
@@ -19,8 +19,8 @@ namespace FieldAgent.DAL.Testing
         private AliasRepository aliasRepo;
         private AgencyAgentRepository agencyAgentRepo;
 
-        public readonly static Agent AGENT1 = MakeAgent1();
-        public readonly static Agent AGENT2 = MakeAgent2();
+        public readonly static Mission MISSION1 = MakeMission1();
+        public readonly static Mission MISSION2 = MakeMission2();
 
         [SetUp]
         public void Setup()
@@ -75,9 +75,9 @@ namespace FieldAgent.DAL.Testing
         {
 
             Response aResponse = new Response();
-            
+
             repo.Insert(AGENT1);
-            
+
             Alias alias = AliasTesting.ALIAS;
             aliasRepo.Insert(alias);
 
@@ -89,31 +89,41 @@ namespace FieldAgent.DAL.Testing
             Assert.IsTrue(aResponse.Success);
 
         }
-        public static Agent MakeAgent1()
+        public static Mission MakeMission1()
         {
 
 
-         Agent agent1 = new Agent()
-        {
-
-            FirstName = "Matthew",
-            LastName = "Lantin",
-            DateOfBirth = DateTime.Parse("03/17/1996"),
-            Height = 42.0M
-        };
-            return agent1;
-    }
-        public static Agent MakeAgent2()
-        {
-            Agent agent2 = new Agent()
+            Mission mission = new Mission()
             {
 
-                FirstName = "Alexa",
-                LastName = "Luca",
-                DateOfBirth = DateTime.Parse("12/01/1999"),
-                Height = 30.0M
+
+                AgencyId = 1,
+                CodeName = "KidsNextDoor",
+                StartDate = DateTime.Parse("03/17/2020"),
+                ProjectedEndDate = DateTime.Parse("03/20/2022"),
+                ActualEndDate = DateTime.Parse("04/20/2022"),
+                OperationalCost = 1004.01M,
+                Notes = "NigelUno"
             };
-            return agent2;
+            return mission;
+        }
+        public static Mission MakeMission2()
+        {
+
+
+            Mission mission = new Mission()
+            {
+
+
+                AgencyId = 2,
+                CodeName = "KidsNextDoor",
+                StartDate = DateTime.Parse("1/17/2019"),
+                ProjectedEndDate = DateTime.Parse("02/20/2022"),
+                ActualEndDate = DateTime.Parse("04/20/2022"),
+                OperationalCost = 1114.01M,
+                Notes = "KND defeats Father"
+            };
+            return mission;
         }
     }
 }
