@@ -71,7 +71,7 @@ namespace FieldAgent.DAL.Testing
             Assert.AreEqual(response.Data, fromMethod.Data);
         }
         [Test]
-        public void Delete()
+        public void DeleteingDependencyAndAgentObject()
         {
 
             Response aResponse = new Response();
@@ -88,6 +88,15 @@ namespace FieldAgent.DAL.Testing
 
             Assert.IsTrue(aResponse.Success);
 
+        }
+        [Test]
+
+        public void UpdatingInsert ()
+        {
+            repo.Insert(AGENT1);
+            AGENT1.FirstName = "Chan";
+            repo.Update(AGENT1);
+            Assert.AreEqual("Chan",AGENT1.FirstName);
         }
         public static Agent MakeAgent1()
         {
