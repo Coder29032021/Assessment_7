@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldAgent.Core", "..\ConsoleApp1\FieldAgent.Core.csproj", "{69F5D18F-9C5D-469D-A5C3-5AF3FCC0E8EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldAgent.Core", "..\ConsoleApp1\FieldAgent.Core.csproj", "{69F5D18F-9C5D-469D-A5C3-5AF3FCC0E8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldAgent.DAL", "..\ConsoleApp2\FieldAgent.DAL.csproj", "{3FB3C432-4977-4A87-A2FF-27625741F96D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldAgent.DAL", "..\ConsoleApp2\FieldAgent.DAL.csproj", "{3FB3C432-4977-4A87-A2FF-27625741F96D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{69F5D18F-9C5D-469D-A5C3-5AF3FCC0E8EB} = {69F5D18F-9C5D-469D-A5C3-5AF3FCC0E8EB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "..\TestProject1\TestProject1.csproj", "{F3F81D2C-9FDA-4301-BBF0-3BC9E12AA295}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldAgent.DAL.Testing", "FieldAgent.DAL.Testing\FieldAgent.DAL.Testing.csproj", "{2F21A96C-E00E-4977-BD41-26E780353CC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +26,10 @@ Global
 		{3FB3C432-4977-4A87-A2FF-27625741F96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FB3C432-4977-4A87-A2FF-27625741F96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FB3C432-4977-4A87-A2FF-27625741F96D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3F81D2C-9FDA-4301-BBF0-3BC9E12AA295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3F81D2C-9FDA-4301-BBF0-3BC9E12AA295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3F81D2C-9FDA-4301-BBF0-3BC9E12AA295}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3F81D2C-9FDA-4301-BBF0-3BC9E12AA295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
