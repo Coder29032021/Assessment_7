@@ -4,12 +4,13 @@ using FieldAgent.DAL;
 using FieldAgent.Core.Entities;
 using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using System;
 namespace FieldAgent.DAL.Testing
 {
-    public class MissionTesting : DbContext
+    public class AgentTesting : DbContext
     {
         //if you are trying to have test data for reports makes sense, otherwise just use repository add additional things
 
@@ -18,6 +19,7 @@ namespace FieldAgent.DAL.Testing
         private AgentRepository repo;
         private AliasRepository aliasRepo;
         private AgencyAgentRepository agencyAgentRepo;
+        private MissionRepository missionRepo;
 
         public readonly static Agent AGENT1 = MakeAgent1();
         public readonly static Agent AGENT2 = MakeAgent2();
@@ -37,6 +39,7 @@ namespace FieldAgent.DAL.Testing
             repo = new AgentRepository(db);
             aliasRepo = new AliasRepository(db);
             agencyAgentRepo = new AgencyAgentRepository(db);
+            missionRepo = new MissionRepository(db);
         }
 
         [Test]
@@ -51,17 +54,7 @@ namespace FieldAgent.DAL.Testing
         [Test]
         public void GetAgentShouldWork()
         {
-            //public Response<Agent> Get(int agentId)
-            //{
-            //    Response<Agent> response = new Response<Agent>();
-            //    Agent agent = new Agent();
-            //    _context.Agent.Find(agentId);
-            //    response.Data = agent;
-            //    return response;
-            //}
-
             Response<Agent> response = new Response<Agent>();
-
             repo.Insert(AGENT1);
 
 
@@ -89,13 +82,35 @@ namespace FieldAgent.DAL.Testing
             Assert.IsTrue(aResponse.Success);
 
         }
+
+        [Test]
+        public void ShouldReturnListofMissions()
+        {
+            Response<List<Mission>> response = new Response<List<Mission>>();
+
+            
+            Mission stuff = MissionTesting.MISSION1;
+            stuff.Agent = new List<Agent>();
+            stuff.Agent.Add(AGENT1);
+            
+            Mission stuff1 = MissionTesting.MISSION2;
+            stuff1.Agent = new List<Agent>(); 
+            stuff1.Agent.Add(AGENT1);
+
+            missionRepo.Insert(stuff);
+            missionRepo.Insert(stuff1);
+
+            response = repo.GetMissions(1);
+            Assert.AreEqual(2, response.Data.Count);
+        }
         [Test]
 
         public void UpdatingInsert ()
         {
+            Response response = new Response();
             repo.Insert(AGENT1);
             AGENT1.FirstName = "Chan";
-            repo.Update(AGENT1);
+            response = repo.Update(AGENT1);
             Assert.AreEqual("Chan",AGENT1.FirstName);
         }
         public static Agent MakeAgent1()
