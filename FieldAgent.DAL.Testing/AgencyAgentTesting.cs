@@ -15,6 +15,7 @@ namespace FieldAgent.DAL.Testing
         private AgentRepository repo;
         private AliasRepository aliasRepo;
         private AgencyAgentRepository agencyAgentRepo;
+        private MissionRepository missionRepo;
 
         public readonly static AgencyAgent AGENCYAGENT1 = MakeAgencyAgent1();
         public readonly static AgencyAgent AGENCYAGENT2 = MakeAgencyAgent2();
@@ -33,7 +34,10 @@ namespace FieldAgent.DAL.Testing
             db.Database.EnsureCreated();
 
             db.SaveChanges();
+            repo = new AgentRepository(db);
+            aliasRepo = new AliasRepository(db);
             agencyAgentRepo = new AgencyAgentRepository(db);
+            missionRepo = new MissionRepository(db);
         }
 
         [Test]
