@@ -40,7 +40,7 @@ namespace FieldAgent.DAL.Testing
         }
 
         [Test]
-        public void ValueForAgentShouldInsert()
+        public void ValueForAliasShouldInsert()
         {
             aliasRepo.Insert(ALIAS);
 
@@ -73,7 +73,7 @@ namespace FieldAgent.DAL.Testing
         }
 
         [Test]
-        public void GetAgentShouldWork()
+        public void GetAliasByAliasIDShouldWork()
         {
             Response<Alias> response = new Response<Alias>();
             aliasRepo.Insert(ALIAS);
@@ -85,7 +85,7 @@ namespace FieldAgent.DAL.Testing
             Assert.AreEqual(response.Data, fromMethod.Data);
         }
         [Test]
-        public void GetByAgentID()
+        public void GetListofAliasesByAgentID()
         {
             Response<List<Alias>> response = new Response<List<Alias>>();
 
@@ -96,6 +96,7 @@ namespace FieldAgent.DAL.Testing
             response = aliasRepo.GetByAgent(1);
             Assert.AreEqual(3, response.Data.Count);
         }
+        //supporting Code
         public static Alias MakeAlias()
         {
             Alias alias1 = new Alias()

@@ -37,18 +37,6 @@ namespace FieldAgent.DAL.Testing
             securityRepo = new SecurityClearanceRepository(db);
         }
 
-        //[Test]
-        //public void GetSecurityClearancesShouldWork()
-        //{
-        //    Response<Alias> response = new Response<Alias>();
-        //    aliasRepo.Insert(ALIAS);
-
-
-        //    response.Data = ALIAS;
-        //   response.
-
-        //    Assert.AreEqual(response.Data, fromMethod.Data);
-        //}
         [Test]
 
         public void GetSingleAlias()
