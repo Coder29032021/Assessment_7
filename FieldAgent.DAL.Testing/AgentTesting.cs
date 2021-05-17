@@ -10,7 +10,7 @@ using System.IO;
 using System;
 namespace FieldAgent.DAL.Testing
 {
-    public class AgentTesting : DbContext
+    public class AgentTesting
     {
         //if you are trying to have test data for reports makes sense, otherwise just use repository add additional things
 

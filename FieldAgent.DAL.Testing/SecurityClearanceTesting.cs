@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 namespace FieldAgent.DAL.Testing
 {
-    public class SecurityClearanceTesting : DbContext
+    public class SecurityClearanceTesting
     {
         //if you are trying to have test data for reports makes sense, otherwise just use repository add additional things
 
@@ -50,18 +50,32 @@ namespace FieldAgent.DAL.Testing
         //    Assert.AreEqual(response.Data, fromMethod.Data);
         //}
         [Test]
+
+        public void GetSingleAlias()
+        {
+            Response<SecurityClearance> response = new Response<SecurityClearance>();
+            
+            db.SecurityClearance.Add(SECURITY1);
+            db.SaveChanges();
+
+            response.Data = SECURITY1;
+            var fromMethod = securityRepo.Get(1);
+
+            Assert.AreEqual(fromMethod.Data, response.Data);
+        }
+        [Test]
         public void GetAllAliases()
         {
             Response<List<SecurityClearance>> response = new Response<List<SecurityClearance>>();
 
-            db.Add(SECURITY1);
-            SaveChanges();
+            db.SecurityClearance.Add(SECURITY1);
+            db.SaveChanges();
 
-            db.Add(SECURITY2);
-            SaveChanges();
+            db.SecurityClearance.Add(SECURITY2);
+            db.SaveChanges();
 
-            db.Add(SECURITY3);
-            SaveChanges();
+            db.SecurityClearance.Add(SECURITY3);
+            db.SaveChanges();
 
             response = securityRepo.GetAll();
             Assert.AreEqual(3, response.Data.Count);

@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 namespace FieldAgent.DAL.Testing
 {
-    public class AgencyTesting: DbContext
+    public class AgencyTesting
     {
         private FieldAgentContext db;
         private AgentRepository repo;

@@ -9,7 +9,7 @@ using System.IO;
 using System;
 namespace FieldAgent.DAL.Testing
 {
-    public class AgencyAgentTesting: DbContext
+    public class AgencyAgentTesting
     {
         private FieldAgentContext db;
         private AgentRepository repo;
