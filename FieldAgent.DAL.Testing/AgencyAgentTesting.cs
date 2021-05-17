@@ -1,11 +1,8 @@
 using NUnit.Framework;
 using FieldAgent.DAL.Repositories;
-using FieldAgent.DAL;
 using FieldAgent.Core.Entities;
 using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
 using System.Collections.Generic;
 using System;
 namespace FieldAgent.DAL.Testing
@@ -21,10 +18,6 @@ namespace FieldAgent.DAL.Testing
         public readonly static AgencyAgent AGENCYAGENT1 = MakeAgencyAgent1();
         public readonly static AgencyAgent AGENCYAGENT2 = MakeAgencyAgent2();
         public readonly static AgencyAgent AGENCYAGENT3 = MakeAgencyAgent3();
-
-
-
-
 
         [SetUp]
         public void Setup()
@@ -74,16 +67,7 @@ namespace FieldAgent.DAL.Testing
 
             Assert.AreEqual(response.BadgeId, AGENCYAGENT1.BadgeId);
         }
-        [Test]
-        public void ShouldUpdateAgencyAgent()
-        {
-            Response response = new Response();
-            agencyAgentRepo.Insert(AGENCYAGENT1);
 
-            AGENCYAGENT1.IsActive = 0;
-            response = agencyAgentRepo.Update(AGENCYAGENT1);
-            Assert.IsTrue(response.Success);
-        }
         [Test]
         public void AgencyAgentShouldDelete()
         {
@@ -95,7 +79,6 @@ namespace FieldAgent.DAL.Testing
 
             Assert.IsTrue(aResponse.Success);
 
-
         }
         [Test]
         public void AgencyAgentShouldInsert()
@@ -106,7 +89,17 @@ namespace FieldAgent.DAL.Testing
             Assert.AreEqual(response.BadgeId, AGENCYAGENT1.BadgeId);
 
         }
-        
+        [Test]
+        public void ShouldUpdateAgencyAgent()
+        {
+            Response response = new Response();
+            agencyAgentRepo.Insert(AGENCYAGENT1);
+
+            AGENCYAGENT1.IsActive = 0;
+            response = agencyAgentRepo.Update(AGENCYAGENT1);
+            Assert.IsTrue(response.Success);
+        }
+
         public static AgencyAgent MakeAgencyAgent1()
         {
 

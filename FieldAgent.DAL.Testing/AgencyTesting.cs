@@ -1,33 +1,25 @@
 using NUnit.Framework;
 using FieldAgent.DAL.Repositories;
-using FieldAgent.DAL;
 using FieldAgent.Core.Entities;
-using FieldAgent.Core.DTOs;
-using Microsoft.EntityFrameworkCore.InMemory;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.Extensions.Configuration.CommandLine;
-using Microsoft.Extensions.Configuration.EnvironmentVariables;
-using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.Configuration.UserSecrets;
+using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+using System.Collections.Generic;
+using System;
 namespace FieldAgent.DAL.Testing
 {
     public class AgencyTesting
     {
         private FieldAgentContext db;
-        private AgentRepository repo;
-        private Agency agency1 = new Agency()
-        {
-            ShortName = "FBI",
-            LongName = "Federal Breakfast Inspectors"
-        };
-    private Agency agency2 = new Agency()
-    {
-        ShortName = "CIA",
-        LongName = "Centralist Inspection Agency"
-    };
+        private AgencyRepository agencyRepo;
+        private MissionRepository missionRepo;
+        private AgencyAgentRepository agencyagentRepo;
+
+        public readonly static Agency AGENCY1 = MakeAgency1();
+        public readonly static Agency AGENCY2 = MakeAgency2();
+        public readonly static Agency AGENCY3 = MakeAgency3();
+
+
+
 
         [SetUp]
         public void Setup()
@@ -39,16 +31,58 @@ namespace FieldAgent.DAL.Testing
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
 
-            db.Agency.Add(agency1);
-            db.Agency.Add(agency2);
             db.SaveChanges();
-            repo = new AgentRepository(db);
+            agencyRepo = new AgencyRepository(db);
+            agencyagentRepo = new AgencyAgentRepository(db);
+            missionRepo = new MissionRepository(db);
+
         }
 
         [Test]
-        public void Test1()
+        public void DeletingAgencyAndDepedencies()
         {
-            Assert.Pass();
+
+            Response aResponse = new Response();
+
+            agencyRepo.Insert(AGENCY1);
+
+            AgencyAgent agencyAgent= AgencyAgentTesting.AGENCYAGENT1;
+            agencyagentRepo.Insert(agencyAgent);
+
+            Mission mission = MissionTesting.MISSION1;
+            missionRepo.Insert(mission);
+
+            aResponse = agencyRepo.Delete(1);
+
+            Assert.IsTrue(aResponse.Success);
+
+        }
+        public static Agency MakeAgency1()
+        {
+            Agency agency1 = new Agency()
+            {
+                ShortName = "FBI",
+                LongName = "Federal Breakfast Inspectors"
+            };
+            return agency1;
+        }
+        public static Agency MakeAgency2()
+        {
+            Agency agency2 = new Agency()
+            {
+                ShortName = "CIA",
+                LongName = "Centralist Inspection Agency"
+            };
+            return agency2;
+        }
+        public static Agency MakeAgency3()
+        {
+            Agency agency3 = new Agency()
+            {
+                ShortName = "CDI",
+                LongName = "Central Dogs Intelligence"
+            };
+            return agency3;
         }
     }
 }

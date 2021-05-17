@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using FieldAgent.DAL.Repositories;
-using FieldAgent.DAL;
+using System.Collections.Generic;
 using FieldAgent.Core.Entities;
 using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +22,8 @@ namespace FieldAgent.DAL.Testing
 
         public readonly static Mission MISSION1 = MakeMission1();
         public readonly static Mission MISSION2 = MakeMission2();
+        public readonly static Mission MISSION3 = MakeMission3();
+
 
         [SetUp]
         public void Setup()
@@ -52,7 +54,7 @@ namespace FieldAgent.DAL.Testing
 
         }
         [Test]
-        public void GetMissionByMissionIDShouldWork()
+        public void GetMissionByMissionID()
         {
             Response<Mission> response = new Response<Mission>();
             missionRepo.Insert(MISSION1);
@@ -64,17 +66,70 @@ namespace FieldAgent.DAL.Testing
             Assert.AreEqual(response.Data, fromMethod.Data);
         }
         [Test]
+        public void UsingAgencyIdGetListOfMissions()
+        {
+            Response<List<Mission>> response = new Response<List<Mission>>();
+
+
+            Mission mission = MissionTesting.MISSION1;
+            mission.Agent = new List<Agent>();
+            mission.Agent.Add(AgentTesting.AGENT1);
+
+            Mission mission1 = MissionTesting.MISSION2;
+            mission1.Agent = new List<Agent>();
+            mission1.Agent.Add(AgentTesting.AGENT1);
+
+            missionRepo.Insert(mission);
+            missionRepo.Insert(mission1);
+
+            response = repo.GetMissions(1);
+            Assert.AreEqual(2, response.Data.Count);
+        }
+        [Test]
+        public void UsingAgentIdGetListOfMissions()
+        {
+            Response<List<Mission>> response = new Response<List<Mission>>();
+
+
+            Mission mission = MissionTesting.MISSION1;
+            mission.Agent = new List<Agent>();
+            mission.Agent.Add(AgentTesting.AGENT1);
+
+            Mission mission1 = MissionTesting.MISSION2;
+            mission1.Agent = new List<Agent>();
+            mission1.Agent.Add(AgentTesting.AGENT1);
+
+            missionRepo.Insert(mission);
+            missionRepo.Insert(mission1);
+
+            response = repo.GetMissions(1);
+            Assert.AreEqual(2, response.Data.Count);
+        }
+
+        [Test]
         public void ValueForMissionShouldInsert()
         {
-            missionRepo.Insert(MISSION1);
+            missionRepo.Insert(MISSION3);
 
             var response = db.Mission.Find(1);
-            Assert.AreEqual(response.CodeName, "KidsNextDoor");
+            Assert.AreEqual(response.CodeName, "GruFromDespicableMe");
 
+        }
+        [Test]
+
+        public void UpdatingAgent()
+        {
+            Response response = new Response();
+            missionRepo.Insert(MISSION1);
+
+            MISSION1.CodeName = "Chan";
+
+            response = missionRepo.Update(MISSION1);
+
+            Assert.IsTrue(response.Success);
         }
         public static Mission MakeMission1()
         {
-
 
             Mission mission = new Mission()
             {
@@ -100,6 +155,25 @@ namespace FieldAgent.DAL.Testing
 
                 AgencyId = 1,
                 CodeName = "KidsNextDoor",
+                StartDate = DateTime.Parse("1/17/2019"),
+                ProjectedEndDate = DateTime.Parse("02/20/2022"),
+                ActualEndDate = DateTime.Parse("04/20/2022"),
+                OperationalCost = 1114.01M,
+                Notes = "KND defeats Father"
+
+            };
+            return mission;
+        }
+        public static Mission MakeMission3()
+        {
+
+
+            Mission mission = new Mission()
+            {
+
+
+                AgencyId = 3,
+                CodeName = "GruFromDespicableMe",
                 StartDate = DateTime.Parse("1/17/2019"),
                 ProjectedEndDate = DateTime.Parse("02/20/2022"),
                 ActualEndDate = DateTime.Parse("04/20/2022"),

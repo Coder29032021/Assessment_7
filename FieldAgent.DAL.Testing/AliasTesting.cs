@@ -62,17 +62,6 @@ namespace FieldAgent.DAL.Testing
         }
 
         [Test]
-        public void ShouldUpdate()
-        {
-            Response response = new Response();
-            aliasRepo.Insert(ALIAS);
-
-            ALIAS.AliasName = "Chan";
-           response = aliasRepo.Update(ALIAS);
-            Assert.IsTrue(response.Success);
-        }
-
-        [Test]
         public void GetAliasByAliasIDShouldWork()
         {
             Response<Alias> response = new Response<Alias>();
@@ -95,6 +84,17 @@ namespace FieldAgent.DAL.Testing
 
             response = aliasRepo.GetByAgent(1);
             Assert.AreEqual(3, response.Data.Count);
+        }
+
+        [Test]
+        public void ShouldUpdate()
+        {
+            Response response = new Response();
+            aliasRepo.Insert(ALIAS);
+
+            ALIAS.AliasName = "Chan";
+            response = aliasRepo.Update(ALIAS);
+            Assert.IsTrue(response.Success);
         }
         //supporting Code
         public static Alias MakeAlias()

@@ -1,12 +1,9 @@
 using NUnit.Framework;
 using FieldAgent.DAL.Repositories;
-using FieldAgent.DAL;
 using FieldAgent.Core.Entities;
 using FieldAgent.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using System.IO;
 using System;
 namespace FieldAgent.DAL.Testing
 {
@@ -45,10 +42,10 @@ namespace FieldAgent.DAL.Testing
         [Test]
         public void ValueForAgentShouldInsert()
         {
-            repo.Insert(AGENT1);
+            repo.Insert(AGENT2);
 
             var response = db.Agent.Find(1);
-            Assert.AreEqual(response.FirstName, AGENT1.FirstName);
+            Assert.AreEqual(response.FirstName, "Alexa");
 
         }
         [Test]
@@ -89,23 +86,23 @@ namespace FieldAgent.DAL.Testing
             Response<List<Mission>> response = new Response<List<Mission>>();
 
             
-            Mission stuff = MissionTesting.MISSION1;
-            stuff.Agent = new List<Agent>();
-            stuff.Agent.Add(AGENT1);
+            Mission mission = MissionTesting.MISSION1;
+            mission.Agent = new List<Agent>();
+            mission.Agent.Add(AGENT1);
             
-            Mission stuff1 = MissionTesting.MISSION2;
-            stuff1.Agent = new List<Agent>(); 
-            stuff1.Agent.Add(AGENT1);
+            Mission mission1 = MissionTesting.MISSION2;
+            mission1.Agent = new List<Agent>();
+            mission1.Agent.Add(AGENT1);
 
-            missionRepo.Insert(stuff);
-            missionRepo.Insert(stuff1);
+            missionRepo.Insert(mission);
+            missionRepo.Insert(mission1);
 
             response = repo.GetMissions(1);
             Assert.AreEqual(2, response.Data.Count);
         }
         [Test]
 
-        public void UpdatingInsert ()
+        public void UpdatingAgentS ()
         {
             Response response = new Response();
             repo.Insert(AGENT1);
