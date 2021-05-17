@@ -41,6 +41,29 @@ namespace FieldAgent.DAL.Testing
             missionRepo = new MissionRepository(db);
         }
         [Test]
+        public void ShouldDeleteMission()
+        {
+            Response aResponse = new Response();
+            missionRepo.Insert(MISSION1);
+            missionRepo.Insert(MISSION2);
+            aResponse = missionRepo.Delete(1);
+
+            Assert.IsTrue(aResponse.Success);
+
+        }
+        [Test]
+        public void GetMissionByMissionIDShouldWork()
+        {
+            Response<Mission> response = new Response<Mission>();
+            missionRepo.Insert(MISSION1);
+
+
+            response.Data = MISSION1;
+            var fromMethod = missionRepo.Get(1);
+
+            Assert.AreEqual(response.Data, fromMethod.Data);
+        }
+        [Test]
         public void ValueForMissionShouldInsert()
         {
             missionRepo.Insert(MISSION1);
