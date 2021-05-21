@@ -21,6 +21,9 @@ namespace FieldAgent.DAL.Testing
         public readonly static SecurityClearance SECURITY1 = MakeSecurityClearance1();
         public readonly static SecurityClearance SECURITY2 = MakeSecurityClearance2();
         public readonly static SecurityClearance SECURITY3 = MakeSecurityClearance3();
+        public readonly static SecurityClearance SECURITY4 = MakeSecurityClearance4();
+        public readonly static SecurityClearance SECURITY5 = MakeSecurityClearance5();
+
 
         [SetUp]
         public void Setup()
@@ -65,6 +68,11 @@ namespace FieldAgent.DAL.Testing
             db.SecurityClearance.Add(SECURITY3);
             db.SaveChanges();
 
+            db.SecurityClearance.Add(SECURITY4);
+            db.SaveChanges();
+            db.SecurityClearance.Add(SECURITY5);
+            db.SaveChanges();
+
             response = securityRepo.GetAll();
             Assert.AreEqual(3, response.Data.Count);
         }
@@ -72,7 +80,7 @@ namespace FieldAgent.DAL.Testing
         {
             SecurityClearance securityClearance1 = new SecurityClearance()
             {
-                SecurityClearanceName = "007"
+                SecurityClearanceName = "none"
             };
             return securityClearance1;
         }
@@ -80,7 +88,7 @@ namespace FieldAgent.DAL.Testing
         {
             SecurityClearance securityClearance2 = new SecurityClearance()
             {
-                SecurityClearanceName = "008"
+                SecurityClearanceName = "retired"
             };
             return securityClearance2;
         }
@@ -88,7 +96,23 @@ namespace FieldAgent.DAL.Testing
         {
             SecurityClearance securityClearance3 = new SecurityClearance()
             {
-                SecurityClearanceName = "009"
+                SecurityClearanceName = "secret"
+            };
+            return securityClearance3;
+        }
+        public static SecurityClearance MakeSecurityClearance4()
+        {
+            SecurityClearance securityClearance3 = new SecurityClearance()
+            {
+                SecurityClearanceName = "topsecret"
+            };
+            return securityClearance3;
+        }
+        public static SecurityClearance MakeSecurityClearance5()
+        {
+            SecurityClearance securityClearance3 = new SecurityClearance()
+            {
+                SecurityClearanceName = "secret"
             };
             return securityClearance3;
         }

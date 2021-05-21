@@ -43,7 +43,7 @@ namespace FieldAgent.DAL.Testing
         {
             var result = reportRepo.GetTopAgents();
 
-            Assert.AreEqual(3, result.Data.Count);
+            Assert.AreEqual(2, result.Data.Count);
         }
         [Test]
         public void ShoudlReturnPensionList()
