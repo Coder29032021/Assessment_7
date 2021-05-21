@@ -93,10 +93,12 @@ namespace FieldAgent.DAL.Testing
         public void ShouldUpdateAgencyAgent()
         {
             Response response = new Response();
-            agencyAgentRepo.Insert(AGENCYAGENT1);
+           var agencyAgentToUpdate = AGENCYAGENT1;
+            agencyAgentRepo.Insert(agencyAgentToUpdate);
 
-            AGENCYAGENT1.IsActive = 0;
-            response = agencyAgentRepo.Update(AGENCYAGENT1);
+            agencyAgentToUpdate.IsActive= 0;
+            response = agencyAgentRepo.Update(agencyAgentToUpdate);
+
             Assert.IsTrue(response.Success);
         }
 

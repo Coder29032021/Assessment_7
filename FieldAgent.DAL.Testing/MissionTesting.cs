@@ -71,18 +71,16 @@ namespace FieldAgent.DAL.Testing
             Response<List<Mission>> response = new Response<List<Mission>>();
 
 
-            Mission mission = MissionTesting.MISSION1;
-            mission.Agent = new List<Agent>();
-            mission.Agent.Add(AgentTesting.AGENT1);
+            Mission mission = MISSION1;
+            mission.Agency = AgencyTesting.AGENCY1;
 
-            Mission mission1 = MissionTesting.MISSION2;
-            mission1.Agent = new List<Agent>();
-            mission1.Agent.Add(AgentTesting.AGENT1);
+            Mission mission1 = MISSION2;
+            mission1.Agency = AgencyTesting.AGENCY1;
 
             missionRepo.Insert(mission);
             missionRepo.Insert(mission1);
 
-            response = repo.GetMissions(1);
+            response = missionRepo.GetByAgency(1);
             Assert.AreEqual(2, response.Data.Count);
         }
         [Test]
@@ -117,14 +115,14 @@ namespace FieldAgent.DAL.Testing
         }
         [Test]
 
-        public void UpdatingAgent()
+        public void UpdatingMission()
         {
             Response response = new Response();
-            missionRepo.Insert(MISSION1);
+            var MissionToUpdate = MISSION1;
+            missionRepo.Insert(MissionToUpdate);
 
-            MISSION1.CodeName = "Chan";
-
-            response = missionRepo.Update(MISSION1);
+            MissionToUpdate.CodeName = "Ghost";
+            response = missionRepo.Update(MissionToUpdate);
 
             Assert.IsTrue(response.Success);
         }
@@ -154,7 +152,7 @@ namespace FieldAgent.DAL.Testing
 
 
                 AgencyId = 1,
-                CodeName = "KidsNextDoor",
+                CodeName = "Jungler",
                 StartDate = DateTime.Parse("1/17/2019"),
                 ProjectedEndDate = DateTime.Parse("02/20/2022"),
                 ActualEndDate = DateTime.Parse("04/20/2022"),

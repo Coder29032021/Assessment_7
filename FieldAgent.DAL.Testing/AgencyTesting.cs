@@ -39,6 +39,34 @@ namespace FieldAgent.DAL.Testing
         }
 
         [Test]
+
+        public void GetSingleAlias()
+        {
+            Response<Agency> response = new Response<Agency>();
+
+            agencyRepo.Insert(AGENCY1);
+
+            response.Data = AGENCY1;
+            var fromMethod = agencyRepo.Get(1);
+
+            Assert.AreEqual(fromMethod.Data, response.Data);
+        }
+
+        [Test]
+        public void GetAllAgencies()
+        {
+            Response<List<Agency>> response = new Response<List<Agency>>();
+
+            agencyRepo.Insert(AGENCY1);
+            agencyRepo.Insert(AGENCY2);
+            agencyRepo.Insert(AGENCY3);
+
+            response = agencyRepo.GetAll();
+            Assert.AreEqual(3, response.Data.Count);
+        }
+
+
+        [Test]
         public void DeletingAgencyAndDepedencies()
         {
 
@@ -47,15 +75,39 @@ namespace FieldAgent.DAL.Testing
             agencyRepo.Insert(AGENCY1);
 
             AgencyAgent agencyAgent= AgencyAgentTesting.AGENCYAGENT1;
+            agencyAgent.Agency = AGENCY1;
             agencyagentRepo.Insert(agencyAgent);
 
             Mission mission = MissionTesting.MISSION1;
+            mission.Agency = AGENCY1;
             missionRepo.Insert(mission);
 
             aResponse = agencyRepo.Delete(1);
 
             Assert.IsTrue(aResponse.Success);
 
+        }
+        [Test]
+        public void InsertingAgency()
+        {
+            agencyRepo.Insert(AGENCY3);
+
+            var response = db.Agency.Find(1);
+            Assert.AreEqual(response.ShortName, "CDI");
+        }
+        [Test]
+
+        public void UpdatingAgency()
+        {
+            Response response = new Response();
+            var updatedValue = AGENCY1;
+
+            agencyRepo.Insert(updatedValue);
+            
+            updatedValue.ShortName = "CCC";
+            response = agencyRepo.Update(updatedValue);
+            
+            Assert.IsTrue(response.Success);
         }
         public static Agency MakeAgency1()
         {

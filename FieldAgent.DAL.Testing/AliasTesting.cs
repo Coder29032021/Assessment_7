@@ -13,7 +13,6 @@ namespace FieldAgent.DAL.Testing
     public class AliasTesting
     {
         //if you are trying to have test data for reports makes sense, otherwise just use repository add additional things
-
         //create an insert command in sql for reports --> so you would have to insert some data into data base for ADO.net to read so write insert statements to insert o
         private FieldAgentContext db;
         private AliasRepository aliasRepo;
@@ -87,13 +86,15 @@ namespace FieldAgent.DAL.Testing
         }
 
         [Test]
-        public void ShouldUpdate()
+        public void AliasShouldUpdate()
         {
             Response response = new Response();
-            aliasRepo.Insert(ALIAS);
+            var aliasToUpdate = ALIAS;
+            aliasRepo.Insert(aliasToUpdate);
 
-            ALIAS.AliasName = "Chan";
-            response = aliasRepo.Update(ALIAS);
+            aliasToUpdate.AliasName = "Ghost";
+            response = aliasRepo.Update(aliasToUpdate);
+
             Assert.IsTrue(response.Success);
         }
         //supporting Code

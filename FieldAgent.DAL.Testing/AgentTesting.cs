@@ -64,14 +64,21 @@ namespace FieldAgent.DAL.Testing
         public void DeleteingDependencyAndAgentObject()
         {
 
+
             Response aResponse = new Response();
+
             
+
             repo.Insert(AGENT1);
             
             Alias alias = AliasTesting.ALIAS;
+            alias.Agent = AGENT1;
             aliasRepo.Insert(alias);
 
+            
+
             AgencyAgent agencyAgent = AgencyAgentTesting.AGENCYAGENT1;
+            agencyAgent.Agent = AGENT1;
             agencyAgentRepo.Insert(agencyAgent);
 
             aResponse = repo.Delete(1);
@@ -105,10 +112,13 @@ namespace FieldAgent.DAL.Testing
         public void UpdatingAgentS ()
         {
             Response response = new Response();
-            repo.Insert(AGENT1);
-            AGENT1.FirstName = "Chan";
-            response = repo.Update(AGENT1);
-            Assert.AreEqual("Chan",AGENT1.FirstName);
+            var agentToUpdate = AGENT1;
+            repo.Insert(agentToUpdate);
+
+            agentToUpdate.FirstName = "Ghost";
+            response = repo.Update(agentToUpdate);
+
+            Assert.IsTrue(response.Success);
         }
         public static Agent MakeAgent1()
         {
