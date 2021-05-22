@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Agency List";
+}
+
+<h1>Report's List</h1>
+<div class="row">
+    <a asp-controller="Reports" asp-action="Add">Add New Agency</a>
+</div>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Click To Access Report</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td><a asp-controller="Reports" asp-action="GetTopAgents">Get Top Agents</a></td>
+                <td><p>Returns top three agents by number of missions completed</p></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Reports" asp-action="GetPensionList">Get Pension Lists </a></td>
+                <td><p>Return agent information for only retired agents</p></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Reports" asp-action="AuditClearance">Get Audit Clearances</a></td>
+                <td><p>Return agent information given a security clearance value and agency id</p></td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+

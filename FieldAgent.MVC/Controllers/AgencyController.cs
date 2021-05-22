@@ -26,7 +26,29 @@ namespace FieldAgent.MVC.Controllers
 
             if(result.Success)
             {
-                return View(result.Data)
+                return View(result.Data);
+            }
+            else
+            {
+                throw new Exception(result.Message);
+            }
+        }
+        [Route("agency/add")]
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var model = new Agency();
+            return View(model);
+        }
+        [Route("agency/add/{agency}")]
+        [HttpPost]
+        public IActionResult Add(Agency agency)
+        {
+            var result = _agencyRepository.Insert(agency);
+
+            if (result.Success)
+            {
+                return RedirectToAction("Index");
             }
             else
             {

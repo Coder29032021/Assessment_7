@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldAgent.DAL", "..\Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldAgent.DAL.Testing", "FieldAgent.DAL.Testing\FieldAgent.DAL.Testing.csproj", "{2F21A96C-E00E-4977-BD41-26E780353CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldAgent.MVC", "FieldAgent.MVC\FieldAgent.MVC.csproj", "{F5720ACC-BA74-450A-9F92-3785440BDACB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.MVC", "WebApp.MVC\WebApp.MVC.csproj", "{09772D98-9A57-402C-9785-12CDE5B46F5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +32,10 @@ Global
 		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F21A96C-E00E-4977-BD41-26E780353CC9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5720ACC-BA74-450A-9F92-3785440BDACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5720ACC-BA74-450A-9F92-3785440BDACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5720ACC-BA74-450A-9F92-3785440BDACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5720ACC-BA74-450A-9F92-3785440BDACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09772D98-9A57-402C-9785-12CDE5B46F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09772D98-9A57-402C-9785-12CDE5B46F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09772D98-9A57-402C-9785-12CDE5B46F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09772D98-9A57-402C-9785-12CDE5B46F5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
