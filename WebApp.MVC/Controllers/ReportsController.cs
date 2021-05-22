@@ -18,5 +18,11 @@ namespace FieldAgent.MVC.Controllers
             _repoRepository = repoRepository;
         }
 
+        [Route("Reports")]
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

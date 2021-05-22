@@ -1,41 +1,47 @@
 ﻿@model List<FieldAgent.Core.Entities.Agency>
 
 @{
-    ViewBag.Title = "Agency List";
+    ViewData["Title"] = "Index";
 }
 
-<h1>AGENCY LIST</h1>
-<div class="row">
-    <a asp-controller="Agency" asp-action="Add">Add New Agency</a>
-</div>
-<div class="row">
-    <table class="table table-striped">
-        <thead>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Add">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                AgencyID
+            </th>
+            <th>
+                Agency ShortName
+            </th>
+            <th>
+                Agency LongName
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
             <tr>
-                <th>Agency Id's</th>
-                <th>Agency ShortName</th>
-                <th>Agency LongName</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td>
+                    @a.AgencyId
+                </td>
+                <td>
+                    @a.ShortName
+                </td>
+                <td>
+                    @a.LongName
+                </td>
+                <td>
+                    <a asp-controller="Agency" asp-action="Edit" asp-route-id="@a.AgencyId">Edit</a> |
+                    <a asp-controller="Agency" asp-action="Delete" asp-route-id="@a.AgencyId">Delete</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var a in Model)
-            {
-            <tr>
-                <td><a asp-controller="Agency" asp-action="Get" asp-route-id="@a.AgencyId">@a.AgencyId</a></td>
-                <td><a asp-controller="Agency" asp-action="Get" asp-route-id="@a.AgencyId">@a.ShortName</a></td>
-                <td><a asp-controller="Agency" asp-action="Get" asp-route-id="@a.AgencyId">@a.ShortName</a></td>
-
-
-                <td><a asp-controller="Building" asp-action="GetRooms" asp-route-id="@building.BuildingID">@building.BuildingName</a></td>
-                <td><a asp-action="Edit" asp-controller="Building" asp-route-id="@building.BuildingID">Edit</a></td>
-                <td><a asp-action="Remove" asp-controller="Building" asp-route-id="@building.BuildingID">Delete</a></td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-
+        }
+    </tbody>
+</table>

@@ -1,11 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Agency List";
+    ViewBag.Title = "List of Reports";
 }
 
 <h1>Report's List</h1>
-<div class="row">
-    <a asp-controller="Reports" asp-action="Add">Add New Agency</a>
-</div>
+
 <div class="row">
     <table class="table table-striped">
         <thead>
@@ -28,8 +26,7 @@
                 <td><a asp-controller="Reports" asp-action="AuditClearance">Get Audit Clearances</a></td>
                 <td><p>Return agent information given a security clearance value and agency id</p></td>
             </tr>
-
-            }
+            
         </tbody>
     </table>
 </div>

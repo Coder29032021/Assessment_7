@@ -12,13 +12,12 @@ namespace FieldAgent.MVC.Controllers
     public class AgencyController : Controller
     {
         private IAgencyRepository _agencyRepository;
-        
         public AgencyController(IAgencyRepository agencyRepository)
         {
             _agencyRepository = agencyRepository;
         }
 
-        [Route("agency")]
+        [Route("Agency")]
         [HttpGet]
         public IActionResult Index()
         {
@@ -33,14 +32,14 @@ namespace FieldAgent.MVC.Controllers
                 throw new Exception(result.Messages[0]);
             }
         }
-        [Route("agency/add")]
+        [Route("Agency/Add")]
         [HttpGet]
         public IActionResult Add()
         {
             var model = new Agency();
             return View(model);
         }
-        [Route("agency/add/{agency}")]
+        [Route("Agency/Add")]
         [HttpPost]
         public IActionResult Add(Agency agency)
         {
@@ -55,7 +54,7 @@ namespace FieldAgent.MVC.Controllers
                 throw new Exception(result.Messages[0]);
             }
         }
-        [Route("agency/edit/{id}")]
+        [Route("Agency/Edit/{id}")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -87,9 +86,9 @@ namespace FieldAgent.MVC.Controllers
                 throw new Exception(result.Messages[0]);
             }
         }
-        [Route("agency/remove/{id}")]
+        [Route("Agency/Delete")]
         [HttpGet]
-        public IActionResult Remove(int id)
+        public IActionResult Delete(int id)
         {
             var result = _agencyRepository.Get(id);
 
@@ -103,15 +102,16 @@ namespace FieldAgent.MVC.Controllers
             }
         }
 
-        [Route("agency/remove/{id}")]
+        [Route("Agency/Delete")]
         [HttpPost]
-        public IActionResult Remove(Agency model)
+        public IActionResult Delete(Agency model)
         {
+
             var result = _agencyRepository.Delete(model.AgencyId);
 
             if (result.Success)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
             else
             {

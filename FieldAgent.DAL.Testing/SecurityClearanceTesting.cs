@@ -74,7 +74,7 @@ namespace FieldAgent.DAL.Testing
             db.SaveChanges();
 
             response = securityRepo.GetAll();
-            Assert.AreEqual(3, response.Data.Count);
+            Assert.AreEqual(5, response.Data.Count);
         }
         public static SecurityClearance MakeSecurityClearance1()
         {
