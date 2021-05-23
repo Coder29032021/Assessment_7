@@ -29,7 +29,7 @@ namespace WebApp.MVC
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddTransient<IAgencyRepository, AgencyRepository>();
-
+            services.AddTransient<IMissionRepository, MissionRepository>();
             services.AddTransient<IReportsRepository>(s => new ReportsRepository(_configuration.GetConnectionString("FieldAgent")));
             services.AddDbContext<FieldAgentContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("FieldAgent")));
