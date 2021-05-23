@@ -11,14 +11,29 @@ namespace WebApp.MVC.Controllers
     //authorization after http action methods on all of them. 
     [Route("api/[controller]")]
     [ApiController]
-    public class MissionApiController : ControllerBase
+    public class MissionController : ControllerBase
     {
         private readonly IMissionRepository _missRepo;
 
-        public MissionApiController(IMissionRepository missionRepository)
+        public MissionController(IMissionRepository missionRepository)
         {
             _missRepo = missionRepository;
         }
 
+        [HttpGet]
+        [Route("/api/[controller]/{id}", Name = "GetMission")]
+        public IActionResult GetMission(int id)
+        {
+            var result = _missRepo.Get(id);
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest(result.Messages);
+            }
+        }
     }
 }

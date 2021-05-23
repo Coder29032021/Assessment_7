@@ -28,6 +28,8 @@ namespace WebApp.MVC
         {
             services.AddControllersWithViews();
             services.AddControllers();
+            services.AddTransient<IAliasRepository, AliasRepository>();
+            services.AddTransient<IAgentRepository, AgentRepository>();
             services.AddTransient<IAgencyRepository, AgencyRepository>();
             services.AddTransient<IMissionRepository, MissionRepository>();
             services.AddTransient<IReportsRepository>(s => new ReportsRepository(_configuration.GetConnectionString("FieldAgent")));
@@ -42,6 +44,12 @@ namespace WebApp.MVC
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
