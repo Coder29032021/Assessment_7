@@ -1,0 +1,32 @@
+﻿@model List<FieldAgent.Core.DTOs.PensionListItem>
+
+@{
+    ViewData["Title"] = "ListOfPensions";
+}
+
+<h1>ListOfPensions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>AgencyName</th>
+            <th>BadgeId</th>
+            <th>NameLastFirst</th>
+            <th>DateOfBirth</th>
+            <th>DeactivationDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.AgencyName</td>
+                <td>@a.BadgeId</td>
+                <td>@a.NameLastFirst</td>
+                <td>@a.DateOfBirth</td>
+                <td>@a.DeactivationDate</td>
+            </tr>
+        }
+        <a asp-action="Index">Back to Reports</a>
+    </tbody>
+</table>

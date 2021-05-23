@@ -1,0 +1,17 @@
+﻿@model WebApp.MVC.Models.Clearance
+
+<h1>Enter Agency ID List of Pensions </h1>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <form asp-controller="Reports" asp-action="ListClearance" method="get">
+            <div class="mb-3">
+                <label asp-for="securityId" class="form-label">SecurityId:</label>
+                <input type="number" class="form-control" id="securityId" asp-for="securityId" />
+
+                <label asp-for="agencyId" class="form-label">AgencyId:</label>
+                <input type="number" class="form-control" id="agencyId" asp-for="agencyId" />
+            </div>
+            <button type="submit" class="btn btn-primary">Touch</button>
+        </form>
+    </div>
+</div>

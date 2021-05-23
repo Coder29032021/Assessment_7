@@ -1,0 +1,34 @@
+﻿@model List<FieldAgent.Core.DTOs.ClearanceAuditListItem>
+
+@{
+    ViewBag.Title = "Report List for Clearance Audit Lists";
+}
+
+<h1>Clearance Audit List</h1>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>BadgeId</th>
+                <th>NameLastFirst</th>
+                <th>DateOfBirth</th>
+                <th>ActivationDate</th>
+                <th>DeactivationDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ab in Model)
+            {
+                <tr>
+                    <td>@ab.BadgeId</td>
+                    <td>@ab.NameLastFirst</td>
+                    <td>@ab.DateOfBirth</td>
+                    <td>@ab.ActivationDate</td>
+                    <td>@ab.DeactivationDate</td>
+                </tr>
+            }
+            <a asp-action="Index">Back to Reports</a>
+        </tbody>
+    </table>
+</div>

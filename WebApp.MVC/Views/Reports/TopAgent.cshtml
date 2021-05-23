@@ -1,0 +1,40 @@
+﻿@model List<FieldAgent.Core.DTOs.TopAgentListItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Report</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Agents Last and First Name
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Number of Missions
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var abc in Model)
+        {
+            <tr>
+                <td>
+                    @abc.NameLastFirst
+                </td>
+                <td>
+                    @abc.DateOfBirth
+                </td>
+                <td>
+                    @abc.CompletedMissionCount
+                </td>
+            </tr>
+        }
+        <a asp-action="Index">Back to List</a>
+    </tbody>
+</table>
